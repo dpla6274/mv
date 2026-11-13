@@ -1,0 +1,58 @@
+/* PSD 원본 기준 캔버스: 1920x1080. v8: Difference/Exclusion 유지 + 방향성 레드 와이프 */
+:root {color-scheme:dark;--ink:#070708;--paper:#efe2d0;--maria-text-offset:20px;--vittorio-text-offset:-10px}
+* {box-sizing:border-box}
+html,body {width:100%;min-height:100%;margin:0;background:var(--ink)}
+body {color:var(--paper);font-family:Georgia,'Times New Roman',serif;overflow-x:hidden}
+.page {min-height:100svh}
+.viewport {width:100%;height:100svh;position:relative;overflow:hidden;background:#060609;isolation:isolate;touch-action:pan-y}
+.scene {width:1920px;height:1080px;position:absolute;top:50%;left:50%;transform-origin:center;will-change:transform;user-select:none}
+.scene-base {width:1920px;height:1080px;position:absolute;inset:0;display:block;pointer-events:none}
+.bow-prop {width:266px;height:1012px;left:0;top:68px;z-index:2}
+
+.animated-prop,.type-layer,.bow-prop {position:absolute;display:block;pointer-events:none;user-select:none}
+/* PSD의 차이(Difference)/제외(Exclusion) 블렌딩을 실제 배경 위에 적용.
+   텍스트와 배경은 같은 scene 안에 배치되어야 색상 반전 효과가 납니다. */
+.blend-difference {mix-blend-mode:difference}
+.blend-exclusion {mix-blend-mode:exclusion}
+/* 부모의 transform으로 블렌딩을 가두지 않고, 같은 변수를 사용해 그룹 단위로 이동. */
+.maria-bio,.maria-title {transform:translate3d(0,var(--maria-text-offset),0)}
+.vittorio-title,.vittorio-chronology,.vittorio-red {transform:translate3d(0,var(--vittorio-text-offset),0)}
+.animated-prop {will-change:transform;transition:transform .65s cubic-bezier(.19,.8,.24,1),filter .55s ease}
+.newspaper-prop {z-index:1}
+.notebook-prop {z-index:1}
+.type-layer {z-index:3}
+.vittorio-red {z-index:4}
+.hit-map {z-index:10}
+/* 소품은 대기 중 움직이지 않음. 마우스를 올릴 때만 방향별로 이동. */
+.newspaper-prop {width:879px;height:622px;left:-72px;top:-239px;transform-origin:40% 70%;transform:translate3d(0,0,0)}
+.notebook-prop {width:951px;height:703px;left:1299px;top:565px;transform-origin:40% 50%;transform:translate3d(0,0,0)}
+.scene[data-hover="newspaper"] .newspaper-prop {transform:translate3d(0,23px,0) rotate(.35deg)}
+.scene[data-hover="notebook"] .notebook-prop {transform:translate3d(0,-24px,0) rotate(-.35deg)}
+/* v3 기준 마리아 이름·연대기 +20px, 비토리오 이름 -10px/연대기 -40px. */
+.maria-bio {left:42px;top:468px;width:652px;height:399px}
+.maria-title {left:35px;top:892px;width:740px;height:90px}
+.vittorio-chronology,.vittorio-red {left:812px;top:197px;width:1077px;height:384px}
+.vittorio-title {left:1307px;top:80px;width:578px;height:92px}
+/* 이름에만 적용되는 #FF0000 와이프. 흰 글씨의 혼합 모드는 수정하지 않습니다.
+   동일한 알파 실루엣의 PNG를 위에 겹치고, clip-path 경계만 이동:
+   중간색/그라데이션 없이 선명한 빨간색이 차오르는 효과입니다. */
+.title-reveal {z-index:5;mix-blend-mode:normal;clip-path:inset(0 100% 0 0);transition:clip-path .9s cubic-bezier(.22,1,.36,1);will-change:clip-path}
+.maria-title-red {left:35px;top:892px;width:740px;height:90px;transform:translate3d(0,var(--maria-text-offset),0);clip-path:inset(0 100% 0 0)}
+.vittorio-title-red {left:1307px;top:80px;width:578px;height:92px;transform:translate3d(0,var(--vittorio-text-offset),0);clip-path:inset(0 0 0 100%)}
+.scene[data-hover="maria-title"] .maria-title-red {clip-path:inset(0 0 0 0)}
+.scene[data-hover="vittorio-title"] .vittorio-title-red {clip-path:inset(0 0 0 0)}
+.hit-map {position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
+/* 호버 외곽선과 영역 음영 모두 제거; 투명한 hit target만 유지. */
+.hotspot {cursor:pointer;outline:none}
+.hotspot path,.hotspot polygon,.hotspot rect {fill:rgba(255,255,255,0);stroke:none;pointer-events:all}
+.nonlink-text {fill:rgba(255,255,255,0);stroke:none;pointer-events:all;cursor:default}
+.hotspot:focus-visible {outline:none}
+/* 포인터에 따라 등장하는 검은 호버 툴팁은 없앰; 링크 미설정 때만 알림. */
+.cursor-label {position:fixed;z-index:50;pointer-events:none;max-width:320px;padding:9px 13px;color:var(--paper);font:11px/1.5 Georgia,serif;letter-spacing:.07em;background:rgba(7,7,8,.9);border:1px solid rgba(255,234,211,.28);box-shadow:0 12px 35px rgba(0,0,0,.3);opacity:0;transition:opacity .16s;transform:translate(14px,14px)}
+.cursor-label.show {opacity:1}
+/* 모바일에서 상·하단 사이트 전용 안내/메뉴 바 제거 (v5). */
+@media (max-width:700px) and (orientation:portrait) {
+ .viewport {height:100svh;touch-action:none;cursor:grab}
+ .viewport.is-dragging {cursor:grabbing}
+}
+@media (prefers-reduced-motion:reduce) {.animated-prop,.title-reveal {transition:none!important}.cursor-label{transition:none!important}}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#08080a">
+  <meta name="description" content="MARIA PARK × VITTORIO — interactive archive">
+  <title>MARIA PARK × VITTORIO</title>
+  <link rel="preload" href="assets/scene-base.webp" as="image">
+  <link rel="preload" href="assets/violin-bow.png" as="image">
+  <link rel="stylesheet" href="style.css?v=8">
+  <script src="script.js?v=8" defer></script>
+</head>
+<body>
+  <main class="page">
+    <div class="viewport" id="viewport" aria-label="마리아 박과 비토리오의 인터랙티브 아카이브">
+      <div class="scene" id="scene">
+        <!-- 중앙 인물은 원본 PSD의 한 레이어: 고정, 하나의 클릭 영역. -->
+        <img class="scene-base" src="assets/scene-base.webp" alt="" draggable="false">
+        <!-- 별도 분리한 PSD 레이어. 호버할 때만 이동합니다. -->
+        <img class="animated-prop newspaper-prop" src="assets/newspaper.png" alt="" draggable="false">
+        <!-- 바이올린 활: scene base 위, 신문 위, 텍스트 아래. -->
+        <img class="bow-prop" src="assets/violin-bow.png" alt="" draggable="false">
+        <!-- 원본 PSD 블렌드 모드: MARIA PARK=Exclusion, 나머지 흰 글씨=Difference.
+             각 요소의 CSS 위치는 동일한 그룹별 변수를 사용해 함께 이동합니다. -->
+        <img class="type-layer maria-bio blend-difference" src="assets/maria-bio.png" alt="" draggable="false">
+        <img class="type-layer maria-title blend-exclusion" src="assets/maria-title.png" alt="" draggable="false">
+        <!-- 원본 Exclusion 이름 위에 동일한 글자 모양의 #FF0000 레이어를 겹칩니다.
+             SVG 이름 링크에 호버할 때 왼쪽부터 마스크가 열리므로 그라데이션은 없습니다. -->
+        <img class="type-layer title-reveal maria-title-red" src="assets/maria-title-red.png" alt="" draggable="false">
+        <img class="animated-prop notebook-prop" src="assets/notebook.png" alt="" draggable="false">
+        <img class="type-layer vittorio-title blend-difference" src="assets/vittorio-title.png" alt="" draggable="false">
+        <!-- 원본 Difference 이름은 유지하고, 빨간 글씨가 오른쪽에서부터 차오릅니다. -->
+        <img class="type-layer title-reveal vittorio-title-red" src="assets/vittorio-title-red.png" alt="" draggable="false">
+        <img class="type-layer vittorio-chronology blend-difference" src="assets/vittorio-chronology-white.png" alt="" draggable="false">
+        <!-- 붉은 취소선은 Normal 블렌딩. 흰 연대기와 동일 좌표에 겹쳐 놓습니다. -->
+        <img class="type-layer vittorio-red" src="assets/vittorio-chronology-red.png" alt="" draggable="false">
+        <svg class="hit-map" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" aria-label="아카이브 링크">
+          <a class="hotspot" target="_blank" rel="noopener noreferrer" data-id="couple" href="https://youtube.com/playlist?list=PLPOv65CdoMiw&amp;si=33Mn_ayC2dG6dNeY" aria-label="마리아와 비토리오 — 두 인물의 이야기">
+            <path d="M 1241 35 L 1074 6 L 967 45 L 950 83 L 905 91 L 923 123 L 904 171 L 778 186 L 509 382 L 381 252 L 413 304 L 381 291 L 381 320 L 450 364 L 381 353 L 381 404 L 467 428 L 381 427 L 381 554 L 423 542 L 381 568 L 389 879 L 410 924 L 455 885 L 488 934 L 381 1022 L 381 1079 L 1372 1079 L 1460 745 L 1460 583 L 1428 414 L 1318 348 L 1257 347 L 1241 318 L 1278 156 Z"></path>
+          </a>
+          <a class="hotspot" target="_blank" rel="noopener noreferrer" data-id="newspaper" href="https://dpla.tistory.com/category/VITTORIO/VITTORIO" aria-label="신문 기사">
+            <polygon points="0,0 720,0 765,100 680,230 375,330 35,365 0,330"></polygon>
+          </a>
+          <a class="hotspot" target="_blank" rel="noopener noreferrer" data-id="notebook" href="https://dpla.tistory.com/11" aria-label="수첩과 만년필">
+            <polygon points="1340,680 1490,610 1919,545 1919,1079 1285,1079 1285,770"></polygon>
+          </a>
+          <!-- 연대기는 링크가 아니며, 아래의 투명한 차단 영역이 인물 링크 클릭을 막음. -->
+          <rect class="nonlink-text" x="39" y="485" width="657" height="406" aria-hidden="true"></rect>
+          <rect class="nonlink-text" x="1262" y="184" width="630" height="356" aria-hidden="true"></rect>
+          <rect class="nonlink-text" x="809" y="535" width="1083" height="39" aria-hidden="true"></rect>
+          <!-- 이름 그림만 링크: 연대기 영역은 누를 수 없음. -->
+          <a class="hotspot" target="_blank" rel="noopener noreferrer" data-id="maria-title" href="https://x.com/DPLA_6274" aria-label="마리아 박 이름 링크">
+            <rect x="33" y="908" width="744" height="98"></rect>
+          </a>
+          <a class="hotspot" target="_blank" rel="noopener noreferrer" data-id="vittorio-title" href="https://caveduck.io/ko/share/characters/4dd9205a-b982-496f-9597-72c5ddfc8b49?rc=1qQMZ53X9o&amp;_share_hash=" aria-label="비토리오 이름 링크">
+            <rect x="1304" y="67" width="584" height="101"></rect>
+          </a>
+        </svg>
+      </div>
+      <div class="cursor-label" id="cursor-label" role="status" aria-live="polite"></div>
+    </div>
+  </main>
+</body>
+</html>
