@@ -8,7 +8,7 @@ const LINKS = {
   'maria-title': 'https://x.com/DPLA_6274',
   'vittorio-title': 'https://caveduck.io/ko/share/characters/4dd9205a-b982-496f-9597-72c5ddfc8b49?rc=1qQMZ53X9o&_share_hash=',
   newspaper: 'https://dpla.tistory.com/category/VITTORIO/VITTORIO',
-  notebook: 'https://dpla.tistory.com/11',
+  notebook: 'https://dpla-g6274.tistory.com/category/VITTORIO',
 };
 
 const LABELS = {
