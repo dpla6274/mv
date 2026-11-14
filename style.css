@@ -36,7 +36,7 @@ body {color:var(--paper);font-family:Georgia,'Times New Roman',serif;overflow-x:
 /* 이름에만 적용되는 #FF0000 와이프. 흰 글씨의 혼합 모드는 수정하지 않습니다.
    동일한 알파 실루엣의 PNG를 위에 겹치고, clip-path 경계만 이동:
    중간색/그라데이션 없이 선명한 빨간색이 차오르는 효과입니다. */
-.title-reveal {z-index:5;mix-blend-mode:normal;clip-path:inset(0 100% 0 0);transition:clip-path .9s cubic-bezier(.22,1,.36,1);will-change:clip-path}
+.title-reveal {z-index:5;clip-path:inset(0 100% 0 0);transition:clip-path .9s cubic-bezier(.22,1,.36,1);will-change:clip-path}
 .maria-title-red {left:35px;top:892px;width:740px;height:90px;transform:translate3d(0,var(--maria-text-offset),0);clip-path:inset(0 100% 0 0)}
 .vittorio-title-red {left:1307px;top:80px;width:578px;height:92px;transform:translate3d(0,var(--vittorio-text-offset),0);clip-path:inset(0 0 0 100%)}
 .scene[data-hover="maria-title"] .maria-title-red {clip-path:inset(0 0 0 0)}
