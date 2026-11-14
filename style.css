@@ -56,3 +56,20 @@ body {color:var(--paper);font-family:Georgia,'Times New Roman',serif;overflow-x:
  .viewport.is-dragging {cursor:grabbing}
 }
 @media (prefers-reduced-motion:reduce) {.animated-prop,.title-reveal {transition:none!important}.cursor-label{transition:none!important}}
+
+/* 흰 글씨도 빨간 글씨와 같은 속도로 사라짐 */
+.maria-title,
+.vittorio-title {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path .9s cubic-bezier(.22,1,.36,1);
+}
+
+/* 마리아: 왼쪽부터 흰 글씨 제거 */
+.scene[data-hover="maria-title"] .maria-title {
+  clip-path: inset(0 0 0 100%);
+}
+
+/* 비토리오: 오른쪽부터 흰 글씨 제거 */
+.scene[data-hover="vittorio-title"] .vittorio-title {
+  clip-path: inset(0 100% 0 0);
+}
